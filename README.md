@@ -22,6 +22,7 @@ Prerequisites: [mise](https://mise.jdx.dev/) and Docker.
 ```bash
 git clone git@github.com:crewlinker/atlasbugs.git
 cd atlasbugs
+mise trust
 mise run reproduce
 ```
 
