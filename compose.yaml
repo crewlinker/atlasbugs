@@ -1,0 +1,18 @@
+services:
+  cockroachdb:
+    image: cockroachdb/cockroach:v26.1.1
+    command: start-single-node --insecure
+    environment:
+      COCKROACH_DATABASE: atlasbugs
+    ports:
+      - "26257:26257"
+    volumes:
+      - cockroachdb-data:/cockroach/cockroach-data
+      - ./init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "cockroach", "sql", "--insecure", "-e", "SELECT 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+volumes:
+  cockroachdb-data:

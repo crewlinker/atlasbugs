@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#MISE description="Reproduce the Atlas CockroachDB TTL double-escaping bug"
+set -euo pipefail
+
+echo "==> Starting CockroachDB..."
+docker compose up -d --wait
+
+echo ""
+echo "==> Running: atlas schema apply --env local --auto-approve"
+echo ""
+atlas schema apply --env local --auto-approve || {
+  echo ""
+  echo "^^^ BUG REPRODUCED: Atlas failed to apply the schema."
+  echo "The ttl_expire_after interval value was double-escaped during SQL generation."
+  exit 1
+}
+
+echo ""
+echo "Schema applied successfully (bug may be fixed)."

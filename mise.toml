@@ -1,0 +1,6 @@
+[tools]
+atlas = "latest"
+
+[env]
+DATABASE_URL = "crdb://root@localhost:26257/atlasbugs?sslmode=disable"
+DEV_URL = "crdb://root@localhost:26257/atlas_dev?sslmode=disable"

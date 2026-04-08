@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Tear down CockroachDB and remove volumes"
+set -euo pipefail
+
+docker compose down -v
